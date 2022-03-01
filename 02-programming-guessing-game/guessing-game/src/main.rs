@@ -2,6 +2,8 @@
 use std::io;
 // include random number generator from random number library
 use rand::Rng;
+// include Ordering from the standard library
+use std::cmp::Ordering; // enum has the variants, Less, Greater and Equal
 
 fn main() {
     println!("---Guess the number 🔢!---");
@@ -22,4 +24,14 @@ fn main() {
         .expect("Failed to readline! 🤕");
 
     println!("You Guessed: {}", guess);
+
+    // convert guess to number so that it can be compared
+    let guess: u32 = guess.trim().parse().expect("Please type a number!🤕");
+
+    // compare guess and secret number
+    match guess.cmp(&secret_number) {
+        Ordering::Equal => println!("You Won!🥳"),
+        Ordering::Greater => println!("Too Big!💪"),
+        Ordering::Less => println!("Too Small!🤏"),
+    }
 }
