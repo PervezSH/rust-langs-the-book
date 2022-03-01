@@ -33,7 +33,10 @@ fn main() {
         match guess.cmp(&secret_number) {
             Ordering::Equal => println!("You Won!🥳"),
             Ordering::Greater => println!("Too Big!💪"),
-            Ordering::Less => println!("Too Small!🤏"),
+            Ordering::Less => {
+                println!("Too Small!🤏");
+                break;
+            }
         }
     }
 }
