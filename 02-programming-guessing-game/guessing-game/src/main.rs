@@ -12,7 +12,6 @@ fn main() {
     let mut rng = rand::thread_rng();
     // generate random number between 0 - 100
     let secret_number = rng.gen_range(1..101);
-    println!("The secret number is {}", secret_number);
 
     loop {
         println!("Input your guess : ");
@@ -25,18 +24,21 @@ fn main() {
             .expect("Failed to readline! 🤕");
 
         // convert guess to number so that it can be compared
-        let guess: u32 = guess.trim().parse().expect("Please type a number!🤕");
+        let guess: u32 = match guess.trim().parse() {
+            Ok(num) => num,
+            Err(_) => continue,
+        };
 
         println!("You Guessed: {}", guess);
 
         // compare guess and secret number
         match guess.cmp(&secret_number) {
-            Ordering::Equal => println!("You Won!🥳"),
-            Ordering::Greater => println!("Too Big!💪"),
-            Ordering::Less => {
-                println!("Too Small!🤏");
+            Ordering::Equal => {
+                println!("You Won!🥳");
                 break;
             }
+            Ordering::Greater => println!("Too Big!💪"),
+            Ordering::Less => println!("Too Small!🤏"),
         }
     }
 }
