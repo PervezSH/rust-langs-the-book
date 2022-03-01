@@ -7,7 +7,6 @@ use std::cmp::Ordering; // enum has the variants, Less, Greater and Equal
 
 fn main() {
     println!("---Guess the number 🔢!---");
-    println!("Input your guess : ");
 
     // prepare a non-deterministic random number generator:
     let mut rng = rand::thread_rng();
@@ -15,23 +14,26 @@ fn main() {
     let secret_number = rng.gen_range(1..101);
     println!("The secret number is {}", secret_number);
 
-    // create a mutable variable that is currently bound to a new, empty instance of a String.
-    let mut guess = String::new();
+    loop {
+        println!("Input your guess : ");
+        // create a mutable variable that is currently bound to a new, empty instance of a String.
+        let mut guess = String::new();
 
-    // recieving user input
-    io::stdin()
-        .read_line(&mut guess)
-        .expect("Failed to readline! 🤕");
+        // recieving user input
+        io::stdin()
+            .read_line(&mut guess)
+            .expect("Failed to readline! 🤕");
 
-    println!("You Guessed: {}", guess);
+        // convert guess to number so that it can be compared
+        let guess: u32 = guess.trim().parse().expect("Please type a number!🤕");
 
-    // convert guess to number so that it can be compared
-    let guess: u32 = guess.trim().parse().expect("Please type a number!🤕");
+        println!("You Guessed: {}", guess);
 
-    // compare guess and secret number
-    match guess.cmp(&secret_number) {
-        Ordering::Equal => println!("You Won!🥳"),
-        Ordering::Greater => println!("Too Big!💪"),
-        Ordering::Less => println!("Too Small!🤏"),
+        // compare guess and secret number
+        match guess.cmp(&secret_number) {
+            Ordering::Equal => println!("You Won!🥳"),
+            Ordering::Greater => println!("Too Big!💪"),
+            Ordering::Less => println!("Too Small!🤏"),
+        }
     }
 }
