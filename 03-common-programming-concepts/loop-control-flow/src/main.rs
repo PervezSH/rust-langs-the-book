@@ -3,6 +3,8 @@ fn main() {
     break_and_continue();
     // returning values from loops
     return_loops();
+    // display first 10 fibonacii number
+    generate_nth_fibonacci(10);
 }
 
 fn break_and_continue() {
@@ -31,4 +33,19 @@ fn return_loops() {
         }
     };
     println!("Loop result {}", result);
+}
+
+fn generate_nth_fibonacci(n: i32) {
+    if n < 1 {
+        println!("{}", n);
+    }
+    let mut f1 = 0;
+    let mut f2 = 1;
+    print!("{} ", f1);
+    for i in 1..n {
+        print!("{} ", f2);
+        let next = f1 + f2;
+        f1 = f2;
+        f2 = next;
+    }
 }
