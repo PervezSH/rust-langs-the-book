@@ -1,1 +1,1 @@
-# the-book-rust
+# rust-langs-the-book
