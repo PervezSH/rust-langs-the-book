@@ -1,6 +1,6 @@
 # Rust Langs: The Book
 
-This repository contains a collection of code examples and explanations that I made while learning Rust programming language from scratch up to intermediate level.
+A collection of code examples and explanations that I made while learning Rust programming language from scratch up to intermediate level.
 
 This project aims at walking you through the various concepts of Rust programming language. 
 
